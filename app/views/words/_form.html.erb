@@ -1,29 +1,26 @@
-<%= form_for(@word) do |f| %>
-  <% if @word.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h2>
-
-      <ul>
-      <% @word.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @word, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :meaning, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :meaning, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :sentence, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sentence, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :meaning %><br />
-    <%= f.text_field :meaning %>
-  </div>
-  <div class="field">
-    <%= f.label :sentence %><br />
-    <%= f.text_field :sentence %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                words_path, :class => 'btn' %>
   </div>
 <% end %>
