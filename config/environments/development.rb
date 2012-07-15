@@ -6,6 +6,10 @@ GREWords::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # omniauth-facebook login credentials
+  FACEBOOK_APP_ID = '223178607804628'
+  FACEBOOK_SECRET = '53309b9907bbe8d95c5d407000e4f93a'
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
