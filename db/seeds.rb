@@ -7,11 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-#User.create(:email => "", :hashed_password => "")
 #Word.create(:name => "", :meaning => "", :sentence =>"")
-
-User.create(:email => "survy", :password => "password")
-#User.create(:email => "bree", :hashed_password => "password")
 
 Word.create(:name => "credulity", :meaning => "readiness to believe on the basis of weak evidence", :sentence =>"Con artists take advantage of people's credulity")
 Word.create(:name => "querulous", :meaning => "fussy and full of complaints", :sentence =>"toddles are querulous if they miss their nap")
