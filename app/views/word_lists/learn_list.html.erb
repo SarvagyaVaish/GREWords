@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Words in this list</h1>
+</div>
+
+<% if @word %>
+  <dl class="dl-horizontal">
+    <dt><strong>Name:</strong></dt>
+    <dd><%= @word.name %></dd>
+    <dt><strong>Meaning:</strong></dt>
+    <dd><%= @word.meaning %></dd>
+    <dt><strong>Sentence:</strong></dt>
+    <dd><%= @word.sentence %></dd>
+  </dl>
+<% end %>
+<br />
+<%= link_to "Next Word", learn_list_word_list_path, :class => 'btn' %>
+
+
+

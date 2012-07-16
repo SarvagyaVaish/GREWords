@@ -8,7 +8,9 @@
 
   <div class="span12 centered">
     <% if current_user %>
-      <%= link_to 'My Lists', word_lists_path, :class => 'btn' %>
+      <% current_user.word_lists.each do |word_list| %>
+        <%= link_to word_list.name, contents_word_list_path(word_list), :class => 'btn' %>
+      <% end %>
     <% else %>
       <%= link_to 'Login using FB', '/auth/facebook', :class => 'btn'%>
       <br /><br />
