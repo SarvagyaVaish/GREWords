@@ -1,5 +1,16 @@
 class WordListsController < ApplicationController
-  # GET /learn_lists/1/contents
+  # GET /word_lists/1/test_list
+  def test_list
+    @words = current_user.word_lists.find(params[:id]).words
+    @word = @words[rand(@words.count)]
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @word_lists }
+    end
+  end
+  
+  # GET /word_lists/1/learn_list
   def learn_list
     @words = current_user.word_lists.find(params[:id]).words
     @word = @words[rand(@words.count)]
