@@ -18,7 +18,7 @@ class WordListsControllerTest < ActionController::TestCase
 
   test "should create word_list" do
     assert_difference('WordList.count') do
-      post :create, word_list: { name: @word_list.name, type: @word_list.type, user_id: @word_list.user_id }
+      post :create, word_list: { list_type: @word_list.list_type, name: @word_list.name, user_id: @word_list.user_id }
     end
 
     assert_redirected_to word_list_path(assigns(:word_list))
@@ -35,7 +35,7 @@ class WordListsControllerTest < ActionController::TestCase
   end
 
   test "should update word_list" do
-    put :update, id: @word_list, word_list: { name: @word_list.name, type: @word_list.type, user_id: @word_list.user_id }
+    put :update, id: @word_list, word_list: { list_type: @word_list.list_type, name: @word_list.name, user_id: @word_list.user_id }
     assert_redirected_to word_list_path(assigns(:word_list))
   end
 

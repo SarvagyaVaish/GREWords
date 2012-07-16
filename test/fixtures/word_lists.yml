@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  type: 
+  list_type: MyString
   name: MyString
 
 two:
   user_id: 1
-  type: 
+  list_type: MyString
   name: MyString
