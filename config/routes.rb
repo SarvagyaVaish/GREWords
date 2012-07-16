@@ -4,9 +4,15 @@ GREWords::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
+  match '/home' => 'home#index'
+
   resources :users
 
-  resources :words
+  resources :words do
+    collection do
+      get 'learn'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,7 +63,7 @@ GREWords::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "words#index"
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

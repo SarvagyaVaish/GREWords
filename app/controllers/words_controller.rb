@@ -1,4 +1,15 @@
 class WordsController < ApplicationController
+  # GET /words/learn
+  # GET /words/learn.json
+  def learn
+    @word = Word.random
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @word }
+    end
+  end
+  
   # GET /words
   # GET /words.json
   def index
