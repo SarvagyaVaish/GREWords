@@ -7,7 +7,11 @@
 <div class="row-fluid top-margin-20">
 
   <div class="span12 centered">
-    <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn' %>
+    <% if current_user %>
+      <%= link_to 'My Lists', word_lists_path, :class => 'btn' %>
+    <% else %>
+      <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn' %>
+    <% end %>
   </div>
 
 </div>

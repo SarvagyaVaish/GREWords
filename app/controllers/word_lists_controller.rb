@@ -1,4 +1,14 @@
 class WordListsController < ApplicationController
+  # GET /word_lists/1
+  def learn
+    @words = current_user.word_lists.find(params[:id]).words
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @word_lists }
+    end
+  end
+  
   # GET /word_lists
   # GET /word_lists.json
   def index

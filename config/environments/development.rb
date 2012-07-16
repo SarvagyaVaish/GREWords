@@ -7,8 +7,8 @@ GREWords::Application.configure do
   config.cache_classes = false
 
   # omniauth-facebook login credentials
-  FACEBOOK_APP_ID = '223178607804628'
-  FACEBOOK_SECRET = '53309b9907bbe8d95c5d407000e4f93a'
+  FACEBOOK_APP_ID = '408464435864894'
+  FACEBOOK_SECRET = '3f3dd6d969679a85fb78388b6b349551'
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
