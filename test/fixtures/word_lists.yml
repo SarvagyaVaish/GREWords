@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  word_id: 1
+  type: 
+  name: MyString
+
+two:
+  user_id: 1
+  word_id: 1
+  type: 
+  name: MyString

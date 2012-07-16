@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @word_list.user_id %>
+</p>
+
+<p>
+  <b>Word:</b>
+  <%= @word_list.word_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @word_list.type %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @word_list.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_word_list_path(@word_list) %> |
+<%= link_to 'Back', word_lists_path %>
