@@ -7,9 +7,12 @@ class Word < ActiveRecord::Base
 
   def self.random
     c = count
+    flag = 0
+    word = find(:first)
     begin
+      flag = flag + 1
       word = find(:first, :offset => rand(c))
-    end while word.nil?
+    end while word.nil? && flag < 500
     word
   end
 
