@@ -10,6 +10,8 @@
     <% if current_user %>
       <%= link_to 'My Lists', word_lists_path, :class => 'btn' %>
     <% else %>
+      <%= link_to 'Login using FB', '/auth/facebook', :class => 'btn'%>
+      <br /><br />
       <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn' %>
     <% end %>
   </div>
