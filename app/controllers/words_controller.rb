@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
-  # GET /words/learn
-  # GET /words/learn.json
-  def learn
+  # GET /words/fetch_learn
+  # GET /words/fetch_learn.json
+  def fetch_learn
     @word = Word.random
 
     respond_to do |format|

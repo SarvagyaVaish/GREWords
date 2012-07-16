@@ -10,7 +10,7 @@ GREWords::Application.routes.draw do
 
   resources :words do
     collection do
-      get 'learn'
+      get 'fetch_learn'
     end
   end
 
