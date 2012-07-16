@@ -1,6 +1,13 @@
 GREWords::Application.routes.draw do
 
-  resources :word_lists
+  resources :word_lists do
+    member do
+      get 'contents'
+      resources :words do
+        get 'learn'
+      end
+    end
+  end
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')

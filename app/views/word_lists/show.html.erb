@@ -1,20 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @word_list.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= @word_list.user_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @word_list.user_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:list_type) %>:</strong></dt>
+  <dd><%= @word_list.list_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @word_list.name %></dd>
+</dl>
 
-<p>
-  <b>List type:</b>
-  <%= @word_list.list_type %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @word_list.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_word_list_path(@word_list) %> |
-<%= link_to 'Back', word_lists_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              word_lists_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_word_list_path(@word_list), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              word_list_path(@word_list),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,4 +1,16 @@
 class WordsController < ApplicationController
+  # GET /words/1/learn
+  def learn
+    @word = Word.random
+    @p1 = params[:id]
+    @p2 = params[:word_id]
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @word }
+    end
+  end
+
   # GET /words/fetch_learn
   # GET /words/fetch_learn.json
   def fetch_learn

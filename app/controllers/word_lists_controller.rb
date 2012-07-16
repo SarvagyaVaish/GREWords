@@ -1,6 +1,6 @@
 class WordListsController < ApplicationController
-  # GET /word_lists/1
-  def learn
+  # GET /word_lists/1/contents
+  def contents
     @words = current_user.word_lists.find(params[:id]).words
 
     respond_to do |format|

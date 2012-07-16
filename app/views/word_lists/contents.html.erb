@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h1>Words in this list</h1>
+</div>
+
+<% if @words %>
+  <ul>
+    <% @words.each do |word| %>
+      <li><%= link_to word.name, word_path %>
+    <% end %>
+  </ul>
+<% else %>
+  No words in this list
+<% end %>
+

@@ -1,27 +1,21 @@
-<h1>Listing word_lists</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>List type</th>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @word_lists.each do |word_list| %>
-  <tr>
-    <td><%= word_list.user_id %></td>
-    <td><%= word_list.list_type %></td>
-    <td><%= word_list.name %></td>
-    <td><%= link_to 'Show', word_list %></td>
-    <td><%= link_to 'Edit', edit_word_list_path(word_list) %></td>
-    <td><%= link_to 'Destroy', word_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<div class="page-header">
+  <h1>Word lists</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>List Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @word_lists.each do |word_list| %>
+      <tr>
+        <td><%= link_to word_list.name, contents_word_list_path(word_list) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Word list', new_word_list_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_word_list_path,
+            :class => 'btn btn-primary' %>
