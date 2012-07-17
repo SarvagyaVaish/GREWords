@@ -1,4 +1,15 @@
 class WordListsController < ApplicationController
+  # GET /word_lists/1/add_words
+  def add_words
+    @words = current_user.word_lists.find(params[:id]).words
+    @word = @words[rand(@words.count)]
+    
+    respond_to do |format|
+      format.html { redirect_to :action => "contents" }
+      format.json { render json: @word_lists }
+    end
+  end
+  
   # GET /word_lists/1/test_list
   def test_list
     @words = current_user.word_lists.find(params[:id]).words

@@ -5,6 +5,7 @@ GREWords::Application.routes.draw do
       get 'contents'
       get 'learn_list'
       get 'test_list'
+      get 'add_words'
       resources :words do
         get 'learn'
       end
