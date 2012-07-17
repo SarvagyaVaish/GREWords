@@ -4,7 +4,8 @@ class Word < ActiveRecord::Base
 
   has_many :progresses, :dependent => :destroy
   has_many :users, :through => :progresses
-  has_and_belongs_to_many :word_lists
+  has_many :list_contents
+  has_many :word_lists, :through => :list_contents
 
   def self.random
     c = count
