@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20120716182506) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "word_lists_words", :id => false, :force => true do |t|
+  create_table "word_lists_words", :force => true do |t|
     t.integer "word_list_id"
     t.integer "word_id"
   end
