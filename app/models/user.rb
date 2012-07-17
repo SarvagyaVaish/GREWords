@@ -3,8 +3,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :provider, :name
 
   has_many :progresses, :dependent => :destroy
-  has_many :words, :through => :progresses
+  #has_many :words, :through => :progresses
   has_many :word_lists, :dependent => :destroy
+  has_many :list_contents, :through => :word_lists
+  has_many :words, :through => :list_contents
   
   after_create :create_new_learn_test_lists
 
