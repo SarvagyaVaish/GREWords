@@ -12,5 +12,9 @@
   No words in this list
 <% end %>
 
-
-<%= link_to "Learn This List", learn_list_word_list_path %>
+<% if @word_list.list_type != 'test' %>
+  <%= link_to "Review This List", learn_list_word_list_path, :class => 'btn' %>
+<% end %>
+<% if @word_list.list_type != 'learn' %>
+  <%= link_to "Test This List", test_list_word_list_path, :class => 'btn' %>
+<% end %>
