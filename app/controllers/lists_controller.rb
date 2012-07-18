@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
+  #rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
   
   # GET /lists/1/learn_list
   def add_to_list
@@ -8,17 +8,18 @@ class ListsController < ApplicationController
     @to_list = current_user.lists.find_by_list_type(params[:to_list_type])
     @word = Word.find(params[:word_id])
 
+    logger.debug "***************************************************************"
+    logger.debug "Adding word #{@word.id} from #{@from_list.id} - #{@from_list.list_type} to #{@to_list.id} - #{@to_list.list_type} "
+
     @to_list.words << @word
     @from_list.words.destroy(@word)
 
-    logger.debug "///////////////////////////////////////////////////////////////"
-    logger.debug @from_list.id
-    logger.debug @to_list.id
-    logger.debug @word.id
-    logger.debug "///////////////////////////////////////////////////////////////"
-
     respond_to do |format|
-      format.html { redirect_to :action => "learn_list" }
+      if List.find(params[:id]).list_type == 'learn'
+        format.html { redirect_to :action => "learn_list" }
+      elsif List.find(params[:id]).list_type == 'test'
+        format.html { redirect_to :action => "test_list" }
+      end
       format.json { render json: @lists }
     end
   end
@@ -52,7 +53,12 @@ class ListsController < ApplicationController
   
   # GET /lists/1/test_list
   def test_list
-    @words = current_user.lists.find(params[:id]).words
+    @list = current_user.lists.find(params[:id])
+    @words = @list.words
+    if @words.count == 0
+      redirect_to :action => 'contents'
+      return true
+    end
     @word = @words[rand(@words.count)]
     
     respond_to do |format|
@@ -65,6 +71,10 @@ class ListsController < ApplicationController
   def learn_list
     @list = current_user.lists.find(params[:id])
     @words = @list.words
+    if @words.count == 0
+      redirect_to :action => 'contents'
+      return true
+    end
     @word = @words[rand(@words.count)]
     
     respond_to do |format|
