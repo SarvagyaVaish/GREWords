@@ -13,6 +13,11 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html #index.html.erb
     end
+
   end
+
+#    respond_to do |format|
+#      format.html { redirect_to contents_list_url(current_user.lists.find_by_list_type('learn')) }
+#    end
 
 end

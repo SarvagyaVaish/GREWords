@@ -1,21 +1,58 @@
-<div class="page-header">
-  <h1>Words in this list</h1>
+<div class="row">
+  <div class="span4 offset4 centered">
+    <div class="page-header">
+      <h1><%= "#{@list.name} List" %></h1>
+    </div>
+  </div>
 </div>
 
-<% if @words %>
-  <ul>
-    <% @words.each do |word| %>
-      <li><%= link_to word.name, word_path %>
-    <% end %>
-  </ul>
-<% else %>
-  No words in this list
-<% end %>
+<div class="row">
+  <div class="span2 offset1 centered">
+    <% if @list.list_type != 'test' %>
+      
+      <div class="row">
+        <div class="span2 well-small">
+          <%= link_to "Review This List", learn_list_list_path, :class => 'btn btn-primary full-width' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 well-small">
+          <%= link_to "Add More Words", add_words_list_path, :class => 'btn btn-primary full-width' %>
+        </div>
+      </div>
 
-<% if @list.list_type != 'test' %>
-  <%= link_to "Review This List", learn_list_list_path, :class => 'btn' %>
-  <%= link_to "Add More Words", add_words_list_path, :class => 'btn' %>
-<% end %>
-<% if @list.list_type != 'learn' %>
-  <%= link_to "Test This List", test_list_list_path, :class => 'btn' %>
-<% end %>
+    <% end %>
+    <% if @list.list_type != 'learn' %>
+    
+      <div class="row">
+        <div class="span2 well-small">
+          <%= link_to "Test This List", test_list_list_path, :class => 'btn btn-primary ' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="span4 offset1 centered">
+    <% if @words %>
+    
+      <% @words.each do |word| %>
+        <%= link_to word_path do %>
+  
+          <div class="row">
+            <div class="span4 well well-small">
+              <h3><%= word.name %></h3>
+            </div>
+          </div>
+
+        <% end %>
+      <% end %>
+
+    <% else %>
+      
+      No words in this list
+    
+    <% end %>
+  </div>
+</div>
+
