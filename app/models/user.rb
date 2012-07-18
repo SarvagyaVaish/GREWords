@@ -29,6 +29,16 @@ class User < ActiveRecord::Base
     unseen_words = all_words - self.words
   end
 
+  def random_unseen_word
+    contender_words = unseen_words
+    c = contender_words.count
+    if c == 0 
+      return nil
+    else
+      word = contender_words[rand(c)]
+    end
+  end
+
   def create_new_learn_test_lists
     List.create(:user_id => id, :list_type => "learn", :name => "Learn")
     List.create(:user_id => id, :list_type => "test", :name => "Test")

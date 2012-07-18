@@ -5,8 +5,22 @@ class ListsController < ApplicationController
   # GET /lists/1/add_words
   def add_words
     @list = current_user.lists.find(params[:id])
-    (1..10).each do 
-      @list.words << Word.random
+
+    twords = current_user.words
+    twords.each do |tword|
+      logger.debug tword.id
+    end
+    
+    (1..100).each do |i|
+      logger.debug "******* Loop number: #{i}"
+      logger.debug "******* Unseen words count: #{current_user.unseen_words.count}"
+      logger.debug "******* User's words: #{current_user.words.count}"
+
+      word = current_user.random_unseen_word
+      if !word.nil?
+        @list.words << word
+        @list.save
+      end
     end
 
     respond_to do |format|
