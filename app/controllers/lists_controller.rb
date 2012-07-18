@@ -2,6 +2,27 @@ class ListsController < ApplicationController
 
   rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
   
+  # GET /lists/1/learn_list
+  def add_to_list
+    @from_list = current_user.lists.find(params[:id])
+    @to_list = current_user.lists.find_by_list_type(params[:to_list_type])
+    @word = Word.find(params[:word_id])
+
+    @to_list.words << @word
+    @from_list.words.destroy(@word)
+
+    logger.debug "///////////////////////////////////////////////////////////////"
+    logger.debug @from_list.id
+    logger.debug @to_list.id
+    logger.debug @word.id
+    logger.debug "///////////////////////////////////////////////////////////////"
+
+    respond_to do |format|
+      format.html { redirect_to :action => "learn_list" }
+      format.json { render json: @lists }
+    end
+  end
+  
   # GET /lists/1/add_words
   def add_words
     @list = current_user.lists.find(params[:id])

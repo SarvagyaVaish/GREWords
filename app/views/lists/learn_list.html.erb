@@ -12,4 +12,9 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="span4 offset4 centered">
+    <%= link_to "Add to Test List", add_to_list_list_path(:word_id => @word.id, :to_list_type => 'test'), :class => 'btn' %>
+  </div>
+</div>
 
