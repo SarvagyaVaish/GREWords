@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717063601) do
+ActiveRecord::Schema.define(:version => 20120717233634) do
 
   create_table "list_contents", :force => true do |t|
-    t.integer  "word_list_id"
+    t.integer  "list_id"
     t.integer  "word_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "lists", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "list_type"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "progresses", :force => true do |t|
@@ -38,14 +46,6 @@ ActiveRecord::Schema.define(:version => 20120717063601) do
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-  end
-
-  create_table "word_lists", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "list_type"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "words", :force => true do |t|

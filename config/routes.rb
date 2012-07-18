@@ -1,6 +1,6 @@
 GREWords::Application.routes.draw do
 
-  resources :word_lists do
+  resources :lists do
     member do
       get 'contents'
       get 'learn_list'

@@ -1,4 +1,4 @@
-class WordList < ActiveRecord::Base
+class List < ActiveRecord::Base
   
   attr_accessible :list_type, :name, :user_id
 

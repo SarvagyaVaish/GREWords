@@ -5,7 +5,7 @@ class Word < ActiveRecord::Base
   has_many :progresses, :dependent => :destroy
   has_many :users, :through => :progresses
   has_many :list_contents
-  has_many :word_lists, :through => :list_contents
+  has_many :lists, :through => :list_contents
 
   def self.random
     c = count
@@ -14,7 +14,7 @@ class Word < ActiveRecord::Base
     begin
       flag = flag + 1
       word = find(:first, :offset => rand(c))
-    end while word.nil? && flag < 500
+    end while word.nil? && flag < c*c
     word
   end
 
