@@ -16,7 +16,7 @@
   <% current_user.lists.each do |list| %>
     <div class="row top-margin-20">
       <div class="span2 offset5 centered">
-        <%= link_to "Open #{list.name} list", contents_list_path(list), :class => 'btn full-width' %>
+        <%= link_to "Open #{list.name} List", contents_list_path(list), :class => 'btn full-width' %>
       </div>
     </div>
   <% end %>
