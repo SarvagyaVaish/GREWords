@@ -10,13 +10,32 @@
 
 <br />
 
-<div class="row">
-  <div class="span4 offset4 centered"> 
-    <h3>
-      <%= word.meaning %>
-    </h3>
+<% if defined? mode %>
+  
+  <% if mode == "test" %>
+    <div class="row">
+      <div class="span4 offset4 centered"> 
+        <div id="click-to-show-meaning" class="well">
+          <h3>Click here to see meaning</h3>
+        </div>
+        <div id="hidden-meaning" style="display: none">
+          <h3><%= word.meaning %></h3>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <div class="row">
+    <div class="span4 offset4 centered"> 
+      <h3>
+        <%= word.meaning %>
+      </h3>
+    </div>
   </div>
-</div>
+
+<% end %>
 
 <br />
 
