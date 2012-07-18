@@ -6,11 +6,8 @@
   </div>
 <% end %>
 
-<div class="row">
-  <div class="span4 offset4 centered">
-    <h1>GRE Words</h1>
-  </div>
-</div>
+<% title = "GRE Words" %>
+<%= render 'shared/page_title', :title => title %>
 
 <% if current_user %>
   <% current_user.lists.each do |list| %>

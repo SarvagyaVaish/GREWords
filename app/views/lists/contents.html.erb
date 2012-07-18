@@ -1,10 +1,5 @@
-<div class="row">
-  <div class="span4 offset4 centered">
-    <div class="page-header">
-      <h1><%= "#{@list.name} List - #{@list.words.count}" %></h1>
-    </div>
-  </div>
-</div>
+<% title = "#{@list.name} List - #{@list.words.count}" %>
+<%= render 'shared/page_title', :title => title %>
 
 <div class="row">
   <div class="span2 offset1 centered">

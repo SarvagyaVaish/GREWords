@@ -1,6 +1,5 @@
-<div class="page-header">
-  <h1>Test List</h1>
-</div>
+<% title = "Testing #{@list.name} List" %>
+<%= render 'shared/page_title', :title => title %>
 
 <% if @word %>
   <dl class="dl-horizontal">
