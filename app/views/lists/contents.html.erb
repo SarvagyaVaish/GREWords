@@ -32,7 +32,7 @@
     <% if @words %>
     
       <% @words.each do |word| %>
-        <%= link_to word_path do %>
+        <%= link_to word_path(word) do %>
   
           <div class="row">
             <div class="span4 well well-small">

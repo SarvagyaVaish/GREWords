@@ -1,5 +1,11 @@
 GREWords::Application.routes.draw do
 
+  resources :words do
+    collection do
+      get 'fetch_learn'
+    end
+  end
+
   resources :lists do
     member do
       get 'contents'
@@ -19,12 +25,6 @@ GREWords::Application.routes.draw do
   match '/home' => 'home#index'
 
   resources :users
-
-  resources :words do
-    collection do
-      get 'fetch_learn'
-    end
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
