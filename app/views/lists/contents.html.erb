@@ -1,5 +1,13 @@
-<% title = "#{@list.name} List - #{@list.words.count}" %>
+<% title = "#{@list.name} List" %>
 <%= render 'shared/page_title', :title => title %>
+
+<div class="row">
+  <div class="span4 offset4 centered">
+    <%= "There are #{@list.words.count} words in this list" %>
+  </div>
+</div>
+
+<br />
 
 <div class="row">
   <div class="span2 offset1 centered">
