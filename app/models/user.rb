@@ -3,11 +3,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :provider, :name
 
   has_many :progresses, :dependent => :destroy
-  #has_many :words, :through => :progresses
   has_many :lists, :dependent => :destroy
+  
   has_many :list_contents, :through => :lists
   has_many :words, :through => :list_contents
   
+  #has_many :words, :through => :progresses
+
   after_create :create_new_learn_test_lists
 
   def self.from_omniauth(auth)
