@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Message:</b>
+  <%= @whats_new_message.message %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @whats_new_message.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_whats_new_message_path(@whats_new_message) %> |
+<%= link_to 'Back', whats_new_messages_path %>

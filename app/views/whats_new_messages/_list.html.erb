@@ -1,0 +1,12 @@
+<% @messages.each do |m| %>
+
+  <div class="row-fluid message-row" id="<%= m.id %>">
+    <div class="span12 well">
+
+      <%= m.message %>
+      <a class="close message-x" href="#" id="<%= m.id %>">&times;</a>
+
+    </div>
+  </div>
+
+<% end %>

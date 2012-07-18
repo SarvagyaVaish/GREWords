@@ -1,0 +1,25 @@
+<h1>Listing whats_new_messages</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @whats_new_messages.each do |whats_new_message| %>
+  <tr>
+    <td><%= whats_new_message.message %></td>
+    <td><%= whats_new_message.status %></td>
+    <td><%= link_to 'Show', whats_new_message %></td>
+    <td><%= link_to 'Edit', edit_whats_new_message_path(whats_new_message) %></td>
+    <td><%= link_to 'Destroy', whats_new_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Whats new message', new_whats_new_message_path %>

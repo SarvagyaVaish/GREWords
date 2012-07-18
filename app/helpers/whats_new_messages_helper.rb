@@ -1,0 +1,2 @@
+module WhatsNewMessagesHelper
+end

@@ -1,5 +1,7 @@
 GREWords::Application.routes.draw do
 
+  resources :whats_new_messages
+
   resources :words do
     collection do
       get 'fetch_learn'
