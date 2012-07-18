@@ -9,26 +9,41 @@
 <% title = "GRE Words" %>
 <%= render 'shared/page_title', :title => title %>
 
-<% if current_user %>
-  <% current_user.lists.each do |list| %>
-    <div class="row top-margin-20">
-      <div class="span2 offset5 centered">
-        <%= link_to "Open #{list.name} List", contents_list_path(list), :class => 'btn full-width' %>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class="row top-margin-20">
-    <div class="span2 offset5 centered">
-      <%= link_to 'Login Using FB', '/auth/facebook', :class => 'btn full-width' %>
-    </div>
-  </div>
-  <div class="row top-margin-20">
-    <div class="span2 offset5 centered">
-      <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn full-width' %>
-    </div>
-  </div>
-<% end %>
+<div class="row">
+
+	<div class="span2 offset5">
+
+		<% if current_user %>
+
+		  <% current_user.lists.each do |list| %>
+			<div class="row top-margin-20">
+			  <div class="span2 centered">
+				<%= link_to "Open #{list.name} List", contents_list_path(list), :class => 'btn full-width' %>
+			  </div>
+			</div>
+		  <% end %>
+
+		<% else %>
+
+		  <div class="row top-margin-20">
+			<div class="span2 centered">
+			  <%= link_to 'Login Using FB', '/auth/facebook', :class => 'btn full-width' %>
+			</div>
+		  </div>
+		  <div class="row top-margin-20">
+			<div class="span2 centered">
+			  <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn full-width' %>
+			</div>
+		  </div>
+
+		<% end %>
+
+	</div>
+
+	<div class="span3 offset2 centered">
+	  <%= render 'shared/whats_new' %>
+	</div>
 
 </div>
+
 
