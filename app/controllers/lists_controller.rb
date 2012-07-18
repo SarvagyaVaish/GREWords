@@ -1,9 +1,14 @@
 class ListsController < ApplicationController
+
+  rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
+  
   # GET /lists/1/add_words
   def add_words
-    @words = current_user.lists.find(params[:id]).words
-    @word = @words[rand(@words.count)]
-    
+    @list = current_user.lists.find(params[:id])
+    (1..10).each do 
+      @list.words << Word.random
+    end
+
     respond_to do |format|
       format.html { redirect_to :action => "contents" }
       format.json { render json: @lists }
@@ -124,4 +129,9 @@ class ListsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def record_invalid
+    redirect_to :action => "contents"
+  end
+
 end
