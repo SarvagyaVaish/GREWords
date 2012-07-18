@@ -1,14 +1,13 @@
-<%- model_class = @word.class -%>
 <div class="page-header">
   <h1>New Word - Learn Mode</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dt><strong>Name:</strong></dt>
   <dd><%= @word.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:meaning) %>:</strong></dt>
+  <dt><strong>Meaning:</strong></dt>
   <dd><%= @word.meaning %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:sentence) %>:</strong></dt>
+  <dt><strong>Sentence:</strong></dt>
   <dd><%= @word.sentence %></dd>
 </dl>
 
