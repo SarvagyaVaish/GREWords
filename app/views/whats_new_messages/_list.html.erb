@@ -1,17 +1,30 @@
+<h3>Whats New?</h3>
+<br />
+
+<% no_msg = true %>
+
 <% @messages.each do |m| %>
 
-  <% if !session[:whats_new] || !session[:whats_new].include? m.id.to_s %>
-
+  <% if !session[:whats_new] or !session[:whats_new].include? m.id.to_s %>
+    <% no_msg = false %>
     <div class="row-fluid message-row" id="<%= m.id %>">
-      <div class="span12 well">
+      <div class="span12 alert alert-success">
 
-        <%= m.title %>
         <%= link_to ('&times;').html_safe, mark_seen_whats_new_message_path(m), :class => "close message-x", :id => m.id %>
+        <b><%= m.title %></b>
+        <br />
+        <b><h6><%= m.text %></h6></b>
 
       </div>
     </div>
-
   <% end %>
 
 <% end %>
 
+<% if no_msg %>
+  <div class="row-fluid">
+    <div class="span12 alert alert-success">
+      <h4>Thats all for now!<br />If you have any ideas you would like to see implemented, use the feedback form</h4>
+    </div>
+  </div>
+<% end %>

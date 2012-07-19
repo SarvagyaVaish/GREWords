@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
     @messages = WhatsNewMessage.where('expiration_date > ?', Time.now)
 
-    if current_user && current_user.words.count == 0
+    if Word.count > 0 && current_user && current_user.words.count == 0
       flash[:notice] = "Welcome #{current_user.name}! To get you started we are adding 10 random words to the Learn list."
       (1..10).each do
         current_user.lists.find_by_list_type('learn').words << Word.random

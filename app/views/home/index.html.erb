@@ -27,12 +27,12 @@
 
 		  <div class="row top-margin-20">
 			<div class="span2 centered">
-			  <%= link_to 'Login Using FB', '/auth/facebook', :class => 'btn btn-primary full-width' %>
+			  <%= link_to 'Login with Facebook', '/auth/facebook', :class => 'btn btn-primary full-width' %>
 			</div>
 		  </div>
 		  <div class="row top-margin-20">
 			<div class="span2 centered">
-			  <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn btn-primary full-width' %>
+			  <%= link_to 'Learn Words', fetch_learn_words_url, :class => 'btn btn-success full-width' %>
 			</div>
 		  </div>
 
@@ -42,8 +42,10 @@
 
         <br />
 
-	<div class="span3 offset2 centered">
-          <%= render 'whats_new_messages/list', :messages => @messages %>
+        <div class="span3 offset2 centered">
+          <% if @messages.count > 0 %>
+            <%= render 'whats_new_messages/list', :messages => @messages %>
+          <% end %>
 	</div>
 
 </div>
