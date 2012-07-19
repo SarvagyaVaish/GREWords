@@ -1,25 +1,32 @@
-<%= form_for(@whats_new_message) do |f| %>
-  <% if @whats_new_message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@whats_new_message.errors.count, "error") %> prohibited this whats_new_message from being saved:</h2>
-
-      <ul>
-      <% @whats_new_message.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @whats_new_message, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :text, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :user_specific, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :user_specific, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expiration_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :expiration_date, :class => 'datetime_select' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_field :message %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.check_box :status %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                whats_new_messages_path, :class => 'btn' %>
   </div>
 <% end %>

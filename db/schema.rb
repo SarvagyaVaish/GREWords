@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718215633) do
+ActiveRecord::Schema.define(:version => 20120718234928) do
 
   create_table "list_contents", :force => true do |t|
     t.integer  "list_id"
@@ -49,10 +49,12 @@ ActiveRecord::Schema.define(:version => 20120718215633) do
   end
 
   create_table "whats_new_messages", :force => true do |t|
-    t.string   "message"
-    t.boolean  "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "text"
+    t.boolean  "user_specific"
+    t.datetime "expiration_date"
   end
 
   create_table "words", :force => true do |t|

@@ -1,6 +1,11 @@
 GREWords::Application.routes.draw do
 
-  resources :whats_new_messages
+  resources :whats_new_messages do
+    member do
+      get 'mark_seen'
+    end
+  end
+ 
 
   resources :words do
     collection do

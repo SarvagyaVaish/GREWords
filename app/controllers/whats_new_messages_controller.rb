@@ -1,4 +1,16 @@
 class WhatsNewMessagesController < ApplicationController
+  # GET /whats_new_messages/1/mark_seen
+  def mark_seen
+
+    key = "message-#{params[:id]}"
+    session[key] = true
+
+    respond_to do |format|
+      format.html { redirect_to :controller => 'home', :action => 'index' }
+      format.json { render json: @whats_new_messages }
+    end
+  end
+
   # GET /whats_new_messages
   # GET /whats_new_messages.json
   def index
