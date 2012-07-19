@@ -1,8 +1,6 @@
 <% @messages.each do |m| %>
 
-
-  <% key = "message-#{m.id}" %>
-  <% if !session[key] %>
+  <% if !session[:whats_new] || !session[:whats_new].include? m.id.to_s %>
 
     <div class="row-fluid message-row" id="<%= m.id %>">
       <div class="span12 well">
@@ -14,7 +12,6 @@
     </div>
 
   <% end %>
-
 
 <% end %>
 

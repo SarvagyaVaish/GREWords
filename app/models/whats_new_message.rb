@@ -7,4 +7,8 @@ class WhatsNewMessage < ActiveRecord::Base
     self.expiration_date = Time.now + 7.days
   end
 
+  def is_user_specific?
+    return user_specific
+  end
+
 end

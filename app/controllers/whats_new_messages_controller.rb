@@ -2,8 +2,8 @@ class WhatsNewMessagesController < ApplicationController
   # GET /whats_new_messages/1/mark_seen
   def mark_seen
 
-    key = "message-#{params[:id]}"
-    session[key] = true
+    session[:whats_new] = [] if session[:whats_new].nil?
+    session[:whats_new] = [session[:whats_new], params[:id]].flatten
 
     respond_to do |format|
       format.html { redirect_to :controller => 'home', :action => 'index' }
