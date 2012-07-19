@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  #rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
+  rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
   
   # GET /lists/1/learn_list
   def add_to_list
