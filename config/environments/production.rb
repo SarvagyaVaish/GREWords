@@ -7,6 +7,7 @@ GREWords::Application.configure do
   # onmiauth fb login credentials
   FACEBOOK_APP_ID = '223178607804628'
   FACEBOOK_SECRET = '53309b9907bbe8d95c5d407000e4f93a'
+  config.middleware.use "WwwMiddleware"
     
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
