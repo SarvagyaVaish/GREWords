@@ -30,6 +30,17 @@
           </a>
 	  <%= link_to 'GREWords', home_path, :class => 'brand' %>
           <div class="container nav-collapse">
+            <ul class="nav">
+              <li class="divider-vertical"></li>
+              <li><%= link_to "Help", "http://grewords.uservoice.com/knowledgebase/" %></li>
+              <% if current_user %>
+                <li class="divider-vertical"></li>
+                <% current_user.lists.each do |list| %>
+                  <li><%= link_to "#{list.name} List", contents_list_path(list) %></li>
+                <% end %>
+              <% end %>
+              <li class="divider-vertical"></li>
+            </ul>
             <ul class="nav pull-right">
               <% if current_user %>
                 <li><a>Signed in as <%= current_user.name %>!</a></li>
