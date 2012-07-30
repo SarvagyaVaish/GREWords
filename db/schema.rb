@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718234928) do
+ActiveRecord::Schema.define(:version => 20120730043328) do
 
   create_table "list_contents", :force => true do |t|
     t.integer  "list_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20120718234928) do
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.boolean  "admin"
   end
 
   create_table "whats_new_messages", :force => true do |t|

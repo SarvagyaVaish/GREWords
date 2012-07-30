@@ -1,15 +1,14 @@
 class ListsController < ApplicationController
 
+  load_and_authorize_resource
+
   rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
   
-  # GET /lists/1/learn_list
+  # GET /lists/1/add_to_list
   def add_to_list
     @from_list = current_user.lists.find(params[:id])
     @to_list = current_user.lists.find_by_list_type(params[:to_list_type])
     @word = Word.find(params[:word_id])
-
-    logger.debug "***************************************************************"
-    logger.debug "Adding word #{@word.id} from #{@from_list.id} - #{@from_list.list_type} to #{@to_list.id} - #{@to_list.list_type} "
 
     @to_list.words << @word
     @from_list.words.destroy(@word)
@@ -28,16 +27,7 @@ class ListsController < ApplicationController
   def add_words
     @list = current_user.lists.find(params[:id])
 
-    twords = current_user.words
-    twords.each do |tword|
-      logger.debug tword.id
-    end
-    
     (1..10).each do |i|
-      logger.debug "******* Loop number: #{i}"
-      logger.debug "******* Unseen words count: #{current_user.unseen_words.count}"
-      logger.debug "******* User's words: #{current_user.words.count}"
-
       word = current_user.random_unseen_word
       if !word.nil?
         @list.words << word
@@ -97,7 +87,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = WordList.all
+    @lists = List.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -108,7 +98,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
-    @list = WordList.find(params[:id])
+    @list = List.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -119,7 +109,7 @@ class ListsController < ApplicationController
   # GET /lists/new
   # GET /lists/new.json
   def new
-    @list = WordList.new
+    @list = List.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -129,13 +119,13 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
-    @list = WordList.find(params[:id])
+    @list = List.find(params[:id])
   end
 
   # POST /lists
   # POST /lists.json
   def create
-    @list = WordList.new(params[:list])
+    @list = List.new(params[:list])
 
     respond_to do |format|
       if @list.save
@@ -151,7 +141,7 @@ class ListsController < ApplicationController
   # PUT /lists/1
   # PUT /lists/1.json
   def update
-    @list = WordList.find(params[:id])
+    @list = List.find(params[:id])
 
     respond_to do |format|
       if @list.update_attributes(params[:list])
@@ -167,7 +157,7 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   # DELETE /lists/1.json
   def destroy
-    @list = WordList.find(params[:id])
+    @list = List.find(params[:id])
     @list.destroy
 
     respond_to do |format|

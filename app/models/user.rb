@@ -44,4 +44,12 @@ class User < ActiveRecord::Base
     List.create(:user_id => id, :list_type => "test", :name => "Test")
   end
 
+  def admin?
+    if admin
+      return true
+    else
+      return false
+    end
+  end
+
 end
