@@ -4,6 +4,6 @@ class ListContent < ActiveRecord::Base
   belongs_to :list
   belongs_to :word
   
-  validates_uniqueness_of :list_id, :scope => :word_id
+  #validates_uniqueness_of :list_id, :scope => :word_id
   
 end

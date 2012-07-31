@@ -14,9 +14,10 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first
+    send_email = false
     if  user.nil?
       user = User.create(auth.slice(:provider, :uid))
-      # send email
+      send_email = true
     end
     user.provider = auth.provider
     user.email = auth.info.email
@@ -25,6 +26,8 @@ class User < ActiveRecord::Base
     user.oauth_token = auth.credentials.token unless auth.provider == 'developer'
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.provider == 'developer'
     user.save!
+    
+    UserMailer.welcome_email(user).deliver if send_email
     user
   end
 
