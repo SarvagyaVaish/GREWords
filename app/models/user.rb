@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :email, :provider, :name
+  attr_accessible :email, :provider, :name, :uid
 
   has_many :progresses, :dependent => :destroy
   has_many :lists, :dependent => :destroy
@@ -13,15 +13,19 @@ class User < ActiveRecord::Base
   after_create :create_new_learn_test_lists
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.email = auth.info.email
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
+    user = where(auth.slice(:provider, :uid)).first
+    if  user.nil?
+      user = User.create(auth.slice(:provider, :uid))
+      # send email
     end
+    user.provider = auth.provider
+    user.email = auth.info.email
+    user.uid = auth.uid
+    user.name = auth.info.name
+    user.oauth_token = auth.credentials.token unless auth.provider == 'developer'
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.provider == 'developer'
+    user.save!
+    user
   end
 
   def unseen_words
