@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
 
   has_many :progresses, :dependent => :destroy
   has_many :lists, :dependent => :destroy
-  
+
   has_many :list_contents, :through => :lists
   has_many :words, :through => :list_contents
-  
+
   #has_many :words, :through => :progresses
 
   after_create :create_new_learn_test_lists
@@ -26,10 +26,8 @@ class User < ActiveRecord::Base
     user.oauth_token = auth.credentials.token unless auth.provider == 'developer'
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.provider == 'developer'
     user.save!
-    
-    (1..10).each do 
-      UserMailer.welcome_email(user).deliver if send_email
-    end
+
+    UserMailer.welcome_email(user).deliver if send_email
     user
   end
 
