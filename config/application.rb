@@ -14,6 +14,18 @@ module GREWords
     # Added to fix asset precompile error
     config.assets.initialize_on_precompile = false
 
+		# Don't care if the mailer can't send
+		config.action_mailer.raise_delivery_errors = true
+		config.action_mailer.delivery_method = :mailhopper
+		config.action_mailer.smtp_settings = {
+			address: "email-smtp.us-east-1.amazonaws.com",
+			port: 587,
+			domain: "vocabwhiz.com",
+			authentication: :login,
+			user_name: "AKIAJTSBUI2WYHASGNFA",
+			password: "AoCcFRZhp5z55w5VQL6RZM/KS25dzp1jF0Ozx868obN4"
+		}
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
