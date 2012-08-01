@@ -1,0 +1,10 @@
+# scaling heroku application
+heroku ps:scale web=0 worker=1
+heroku ps:scale web=1 worker=0
+
+# to see the current stack
+heroku run console
+Delayed::Job.last
+
+# delayed jobs logs
+heroku logs -p worker -t
