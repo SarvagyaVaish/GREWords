@@ -27,7 +27,9 @@ gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'cancan'
 
+gem 'delayed_job_active_record'
 gem 'mailhopper'
+gem 'delayed_mailhopper'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
