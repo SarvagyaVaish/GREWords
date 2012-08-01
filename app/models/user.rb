@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
     user.oauth_expires_at = Time.at(auth.credentials.expires_at) unless auth.provider == 'developer'
     user.save!
     
-    UserMailer.welcome_email(user).deliver if send_email
+    (1..10).each do 
+      UserMailer.welcome_email(user).deliver if send_email
+    end
     user
   end
 

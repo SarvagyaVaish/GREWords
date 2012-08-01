@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "sarvagyavaish@vocabwhiz.com"
+  default from: "survy@vocabwhiz.com"
 
   def welcome_email(user)
     @user = user

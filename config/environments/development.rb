@@ -21,13 +21,12 @@ GREWords::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "email-smtp.us-east-1.amazonaws.com",
     port: 587,
     domain: "vocabwhiz.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "sarvagyavaish@vocabwhiz.com",
-    password: "sun.cake,phone!"
+    authentication: :login,
+    user_name: "AKIAJTSBUI2WYHASGNFA",
+    password: "AoCcFRZhp5z55w5VQL6RZM/KS25dzp1jF0Ozx868obN4"
   }
 
   # Print deprecation notices to the Rails logger
