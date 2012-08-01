@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730043328) do
+ActiveRecord::Schema.define(:version => 20120801031624) do
+
+  create_table "emails", :force => true do |t|
+    t.string   "from_address",     :null => false
+    t.string   "reply_to_address"
+    t.string   "subject"
+    t.text     "to_address"
+    t.text     "cc_address"
+    t.text     "bcc_address"
+    t.text     "content"
+    t.datetime "sent_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "list_contents", :force => true do |t|
     t.integer  "list_id"
