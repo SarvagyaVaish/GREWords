@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
   def create
+    sendWelcomeEmail = User.not_a_current_user?(env["omniauth.auth"]) ? true:false
+
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     redirect_to root_url
+
+    if sendWelcomeEmail
+      UserMailer.welcome_email(user).deliver
+    end
+
   end
 
   def destroy
