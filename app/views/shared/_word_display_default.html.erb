@@ -1,53 +1,44 @@
 <div class="row">
   <div class="span4 offset4 centered"> 
-    <h1>
-      <strong>
-        <%= word.name %>
-      </strong>
-    </h1>
+    <div id="word-name" class="<%= "#{mode}" %>">
+      <h1><strong><%= word.name %></strong></h1>
+    </div>
   </div>
 </div>
 
 <br />
 
-<% if defined? mode %>
-  
-  <% if mode == "test" %>
-    <div class="row">
-      <div class="span4 offset4 centered"> 
-        <div id="click-to-show-meaning" class="well">
-          <h3>Click here to see meaning</h3>
-        </div>
-        <div id="hidden-meaning" style="display: none">
-          <h3><%= word.meaning %></h3>
-          <br />
-          <% unless word.sentence.blank? %>
-            <h6>Sentence</h6>
-            <h4><%= word.sentence %></h4>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-<% else %>
-
-  <div class="row">
-    <div class="span4 offset4 centered"> 
-      <h3><%= word.meaning %></h3>
+<div class="row">
+  <div class="span4 offset4 centered"> 
+    <div id="show-hint" style="display: none" class="well <%= "#{mode}" %>">
+      <h3>Show hint</h3>
     </div>
   </div>
+</div>
 
-  <br />
-
-  <% unless word.sentence.blank? %>
-    <div class="row">
-      <div class="span4 offset4 centered"> 
-        <h6>Sentence</h6>
-        <h4><%= word.sentence %></h4>
-      </div>
+<div class="row">
+  <div class="span4 offset4 centered"> 
+    <div id="show-meaning" style="display: none" class="well <%= "#{mode}" %>">
+      <h3>Show meaning</h3>
     </div>
-  <% end %>
+  </div>
+</div>
 
-<% end %>
+<div class="row">
+  <div class="span4 offset4 centered"> 
+    <div id="word-meaning" style="display: none" class="<%= "#{mode}" %>">
+      <h3><%= word.meaning %></h3>
+      <br />
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="span4 offset4 centered"> 
+    <div id="word-sentence" style="display: none" class="<%= "#{mode}" %>">
+      <h6>Meaning</h6>
+      <h4><%= word.sentence %></h4>
+      <br />
+    </div>
+  </div>
+</div>

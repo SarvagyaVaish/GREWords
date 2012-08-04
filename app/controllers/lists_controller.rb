@@ -3,26 +3,26 @@ class ListsController < ApplicationController
   load_and_authorize_resource
 
   rescue_from ActiveRecord::RecordInvalid, :with => :record_invalid
-  
+
   # GET /lists/1/add_to_list
   def add_to_list
     @from_list = current_user.lists.find(params[:id])
-    @to_list = current_user.lists.find_by_list_type(params[:to_list_type])
+    if @from_list.list_type == 'learn'
+      @to_list = current_user.lists.find_by_list_type('test')
+    elsif @from_list.list_type == 'test'
+      @to_list = current_user.lists.find_by_list_type('learn')
+    end
     @word = Word.find(params[:word_id])
 
     @to_list.words << @word
     @from_list.words.destroy(@word)
 
     respond_to do |format|
-      if List.find(params[:id]).list_type == 'learn'
-        format.html { redirect_to :action => "learn_list" }
-      elsif List.find(params[:id]).list_type == 'test'
-        format.html { redirect_to :action => "test_list" }
-      end
+      format.html { redirect_to :action => "next" }
       format.json { render json: @lists }
     end
   end
-  
+
   # GET /lists/1/add_words
   def add_words
     @list = current_user.lists.find(params[:id])
@@ -40,9 +40,9 @@ class ListsController < ApplicationController
       format.json { render json: @lists }
     end
   end
-  
-  # GET /lists/1/test_list
-  def test_list
+
+  # GET /lists/1/next
+  def next
     @list = current_user.lists.find(params[:id])
     @words = @list.words
     if @words.count == 0
@@ -50,29 +50,13 @@ class ListsController < ApplicationController
       return true
     end
     @word = @words[rand(@words.count)]
-    
+
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @lists }
+      format.html # next.html.erb
+      format.json { render json: @word }
     end
   end
-  
-  # GET /lists/1/learn_list
-  def learn_list
-    @list = current_user.lists.find(params[:id])
-    @words = @list.words
-    if @words.count == 0
-      redirect_to :action => 'contents'
-      return true
-    end
-    @word = @words[rand(@words.count)]
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @lists }
-    end
-  end
-  
+
   # GET /lists/1/contents
   def contents
     @list = current_user.lists.find(params[:id])
@@ -83,7 +67,7 @@ class ListsController < ApplicationController
       format.json { render json: @lists }
     end
   end
-  
+
   # GET /lists
   # GET /lists.json
   def index
