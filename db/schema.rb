@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120801033039) do
+ActiveRecord::Schema.define(:version => 20120806213121) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120801033039) do
     t.integer  "word_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "points"
   end
 
   create_table "lists", :force => true do |t|
@@ -60,9 +61,9 @@ ActiveRecord::Schema.define(:version => 20120801033039) do
   create_table "progresses", :force => true do |t|
     t.integer  "user_id"
     t.integer  "word_id"
-    t.integer  "points"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "points",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "mode"
   end
 
