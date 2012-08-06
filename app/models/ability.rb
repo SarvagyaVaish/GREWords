@@ -13,8 +13,7 @@ class Ability
       can :manage, List
     else
       can :contents, List
-      can :learn_list, List
-      can :test_list, List
+      can :next, List
       can :add_words, List
       can :add_to_list, List
     end
