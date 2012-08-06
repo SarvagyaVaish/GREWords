@@ -37,13 +37,22 @@ class ListsController < ApplicationController
   # GET /lists/1/next
   def next
     @list = current_user.lists.find(params[:id])
-    @words = @list.words
-    if @words.count == 0
+    if @list.words.count == 0
       redirect_to :action => 'contents'
       return true
     end
-    @word = @words[rand(@words.count)]
-
+    
+    # select next word to display at random
+    # @words = @list.words
+    # @word = @words[rand(@words.count)]
+    
+    leastScore = @list.words.minimum("points").to_i
+    possibleWords = ListContent.where(:list_id => @list.id, :points => leastScore)
+    @word = Word.find(possibleWords[rand(possibleWords.count)].word_id)
+    wordToBeUpdated = ListContent.where(:list_id => @list.id, :word_id => @word).first
+    wordToBeUpdated.points = wordToBeUpdated.points + 1
+    wordToBeUpdated.save
+    
     respond_to do |format|
       format.html # next.html.erb
       format.json { render json: @word }
