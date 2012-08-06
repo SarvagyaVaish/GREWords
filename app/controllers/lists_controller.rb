@@ -26,14 +26,7 @@ class ListsController < ApplicationController
   # GET /lists/1/add_words
   def add_words
     @list = current_user.lists.find(params[:id])
-
-    (1..10).each do |i|
-      word = current_user.random_unseen_word
-      if !word.nil?
-        @list.words << word
-        @list.save
-      end
-    end
+    @list.words << current_user.random_unseen_words(5)
 
     respond_to do |format|
       format.html { redirect_to :action => "contents" }

@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     unseen_words = all_words - self.words
   end
 
-  def random_unseen_word(n = 1)
+  def random_unseen_words(n = 1)
     allWords = Word.all
     unseenWords = allWords - self.words
     wordIds = []
