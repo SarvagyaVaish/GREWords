@@ -35,14 +35,14 @@ class User < ActiveRecord::Base
     unseen_words = all_words - self.words
   end
 
-  def random_unseen_word
-    contender_words = unseen_words
-    c = contender_words.count
-    if c == 0 
-      return nil
-    else
-      word = contender_words[rand(c)]
+  def random_unseen_word(n = 1)
+    allWords = Word.all
+    unseenWords = allWords - self.words
+    wordIds = []
+    unseenWords.each do |word|
+      wordIds << word.id
     end
+    return Word.order("RANDOM()").where(:id => wordIds)[0..n-1]
   end
 
   def create_new_learn_test_lists
