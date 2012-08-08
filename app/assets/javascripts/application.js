@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+$(document).ready(function(){
+
+function checkArrowKeys(e){
+  var arrs= [], key= window.event? event.keyCode: e.keyCode;
+  arrs[39]= '.right-arrow';
+  if(arrs[key]) {
+    window.location =  $(".respond-to-key-press" + arrs[key]).attr("href")
+  }
+}
+
+if ($(".respond-to-key-press").length > 0) {
+  document.onkeydown=checkArrowKeys;
+}
+
+});
+
