@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var showMeaning = controller + " #show-meaning";
 	var wordMeaning = controller + " #word-meaning";
 	var wordSentence = controller + " #word-sentence";
-	
+
 	$(showHint + '.test').show();
 	$(showHint + '.learn').hide();
 	$(showHint).css({'cursor': 'pointer'})
@@ -15,22 +15,33 @@ $(document).ready(function(){
 		$(wordSentence).show();
 		$(showHint).hide();
 	});
-		
-	$(showMeaning + '.test').show();
-	$(showMeaning + '.learn').hide();
-	$(showMeaning).css({'cursor': 'pointer'})
+
+$(showMeaning + '.test').show();
+$(showMeaning + '.learn').hide();
+$(showMeaning).css({'cursor': 'pointer'})
 	$(showMeaning).click(function() {  
 		$(wordMeaning).show();
 		$(wordSentence).show();
 		$(showMeaning).hide();
 		$(showHint).hide();
 	});
-		
-	$(wordMeaning + '.test').hide();
-	$(wordMeaning + '.learn').show();
-	
-	$(wordSentence + '.test').hide();
-	$(wordSentence + '.learn').show();
-	
+
+$(wordMeaning + '.test').hide();
+$(wordMeaning + '.learn').show();
+
+$(wordSentence + '.test').hide();
+$(wordSentence + '.learn').show();
+
+function checkArrowKeys(e){
+	var arrs= [], key= window.event? event.keyCode: e.keyCode;
+	arrs[39]= 'right';
+	if(arrs[key]) {
+		window.location =  $("#next-btn").attr("href")
+	}
+}
+document.onkeydown=checkArrowKeys;
+
+
+
 });
 
