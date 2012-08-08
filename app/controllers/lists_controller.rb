@@ -50,7 +50,7 @@ class ListsController < ApplicationController
     possibleWords = ListContent.where(:list_id => @list.id, :points => leastScore)
     @word = Word.find(possibleWords[rand(possibleWords.count)].word_id)
     wordToBeUpdated = ListContent.where(:list_id => @list.id, :word_id => @word).first
-    wordToBeUpdated.points = wordToBeUpdated.points + 1
+    wordToBeUpdated.points = wordToBeUpdated.points + 1+(2*rand).round
     wordToBeUpdated.save
     
     respond_to do |format|
