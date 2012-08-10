@@ -42,16 +42,8 @@ class ListsController < ApplicationController
       return true
     end
     
-    # select next word to display at random
-    # @words = @list.words
-    # @word = @words[rand(@words.count)]
-    
-    leastScore = @list.words.minimum("points").to_i
-    possibleWords = ListContent.where(:list_id => @list.id, :points => leastScore)
-    @word = Word.find(possibleWords[rand(possibleWords.count)].word_id)
-    wordToBeUpdated = ListContent.where(:list_id => @list.id, :word_id => @word).first
-    wordToBeUpdated.points = wordToBeUpdated.points + 1+(2*rand).round
-    wordToBeUpdated.save
+    @word = @list.nextWord
+    @list.updateScore(@word)
     
     respond_to do |format|
       format.html # next.html.erb

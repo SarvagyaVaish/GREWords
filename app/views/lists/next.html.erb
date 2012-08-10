@@ -31,10 +31,10 @@
 <br/>
 <div class="row">
   <div class="span1 offset5 centered">
-    <%= link_to "Yep!", next_list_path, :class => 'btn btn-success respond-to-key-press right-arrow' %>
+    <%= link_to "Yep!", next_list_path(:learnStatus => true, :word_id => @word.id), :class => 'btn btn-success respond-to-key-press right-arrow' %>
   </div>  
   <div class="span1 centered">
-    <%= link_to "Not yet!", next_list_path, :class => 'btn btn-warning respond-to-key-press right-arrow' %>
+    <%= link_to "Not yet!", next_list_path(:learnStatus => false, :word_id => @word.id), :class => 'btn btn-warning respond-to-key-press right-arrow' %>
   </div>  
 </div>    
 <% end %>
