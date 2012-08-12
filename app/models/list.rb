@@ -1,5 +1,5 @@
 class List < ActiveRecord::Base
-  
+
   attr_accessible :list_type, :name, :user_id
 
   belongs_to :user
@@ -13,10 +13,20 @@ class List < ActiveRecord::Base
     return Word.find(nextWordId)
   end
 
-  def updateScore(word)
+  def updateLearnScore(word)
     listContent = ListContent.where(:list_id => id, :word_id => word.id).first
-    if list_type == 'learn'
-      listContent.points = listContent.points + 1+(2*rand).round
+    listContent.points = listContent.points + 1+(2*rand).round
+    listContent.save
+  end
+
+  def updateTestScore(wordId, learnStatus)
+    listContent = ListContent.where(:list_id => id, :word_id => wordId).first
+    if learnStatus == 'true'
+      listContent.points = listContent.points + 150+(5*rand).round
+      listContent.save
+    end
+    if learnStatus == 'false'
+      listContent.points = listContent.points + 10+(2*rand).round
       listContent.save
     end
   end

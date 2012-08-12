@@ -21,8 +21,10 @@ $(document).ready(function(){
 function checkArrowKeys(e){
   var arrs= [], key= window.event? event.keyCode: e.keyCode;
   arrs[39]= '.right-arrow';
-  if(arrs[key]) {
-    window.location =  $(".respond-to-key-press" + arrs[key]).attr("href")
+  arrs[40]= '.down-arrow';
+  arrs[38]= '.up-arrow';
+  if($(".respond-to-key-press" + arrs[key]).length > 0) {
+    window.location = $(".respond-to-key-press" + arrs[key]).attr("href")
   }
 }
 

@@ -41,10 +41,17 @@ class ListsController < ApplicationController
       redirect_to :action => 'contents'
       return true
     end
-    
-    @word = @list.nextWord
-    @list.updateScore(@word)
-    
+
+    if @list.list_type == "learn"
+      @word = @list.nextWord
+      @list.updateLearnScore(@word)
+    elsif @list.list_type == 'test' 
+      if params[:learnStatus]
+        @list.updateTestScore(params[:wordId], params[:learnStatus])
+      end
+      @word = @list.nextWord
+    end
+
     respond_to do |format|
       format.html # next.html.erb
       format.json { render json: @word }
