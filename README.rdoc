@@ -5,7 +5,7 @@ This is an application to improve your vocabulary on the go!
 === Check it out at vocabwhiz.com
 
 Current Features
-1. Smart lists know where you need more work and adjust quizes automaticaly
+1. Smart lists know where you need more work and adjust quizzes automatically
 2. Responsive mobile design. Access the website using your phone's browser
 3. New words added every week!
 
